@@ -1,9 +1,12 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
+
 import { Provider } from "react-redux";
+import { Router } from "react-router-dom";
+import styled, { ThemeProvider } from "styled-components";
 
 import theme from "./themes";
-import { store } from "./helpers";
+import Routes from "./routes";
+import { store, history } from "./helpers";
 
 const AppWrapper = styled.div.attrs(() => ({
   id: "AppWrapper"
@@ -17,9 +20,11 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <AppWrapper>
-          <h2>Kinedu test!!!</h2>
-        </AppWrapper>
+        <Router history={history}>
+          <AppWrapper>
+            <Routes />
+          </AppWrapper>
+        </Router>
       </ThemeProvider>
     </Provider>
   );
