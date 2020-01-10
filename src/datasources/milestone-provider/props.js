@@ -15,24 +15,13 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 
   async fetchMilestonesAction() {
-    debugger;
-    fetch(BASE_URL, {
+    const response = await fetch(BASE_URL, {
       headers: new Headers({
         Authorization: TOKEN,
         "Access-Control-Allow-Origin": "*"
       })
     });
-    debugger;
-    const response = await fetch(BASE_URL);
-    debugger;
-    // const { ok, status, statusText } = response;
-    // if (!ok) {
-    //   console.log(`Error ${status}: ${statusText}.`);
-    //   return;
-    // }
-
     const data = await response.json();
-    debugger;
     dispatch(onSuccessFetchMilestones(data));
   }
 });
