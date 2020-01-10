@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
   // OUTPUT DIRECTORY
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.bundle-[hash].js"
+    filename: "bundle-[hash].js"
   },
 
   // EVIROMENT MODE
@@ -39,6 +40,7 @@ module.exports = {
 
   // PLUGINS
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, "public/index.html"),
       filename: "index.html"
@@ -47,8 +49,9 @@ module.exports = {
 
   // DEV SERVER ENTRY POINT
   devServer: {
-    port: 3000,
+    hot: true,
     open: true,
-    contentBase: path.resolve(__dirname, "src")
+    port: 3000,
+    contentBase: path.resolve(__dirname, "dist")
   }
 };

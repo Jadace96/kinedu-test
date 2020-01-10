@@ -6,3 +6,5 @@ import App from "./App";
 import "./normalize.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
+
+module.hot.accept();
