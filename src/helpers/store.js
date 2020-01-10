@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
-import reduxSaga from "redux-saga";
+import thunkMiddleware from "redux-thunk";
 
-import rootReducer from "../containers/rootReducer";
+import rootReducer from "../rootReducer";
 
-export const store = createStore(rootReducer, applyMiddleware(reduxSaga()));
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
