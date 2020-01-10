@@ -1,11 +1,11 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
 function MilestonesPage() {
   return (
     <div>
       <Helmet>
-        <title>{"Kinedu - Milestones"}</title>
+        <title>Kinedu - Milestones</title>
       </Helmet>
       <h1>Milestones page</h1>
     </div>

@@ -1,7 +1,7 @@
-import { colors } from "./colors";
-import { device } from "./devices";
+import colors from './colors';
+import device from './devices';
 
 export default {
   colors,
-  device
+  device,
 };
