@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import { milestoneProviderReducer } from "./datasources/milestone-provider";
+import { skillProviderReducer } from "./datasources/skill-provider";
 
 const rootReducer = combineReducers({
-  milestoneProviderReducer
+  skillProviderReducer
 });
 
 export default rootReducer;

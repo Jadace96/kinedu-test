@@ -1,4 +1,4 @@
-import { bindMilestoneProvider } from "../../../datasources/milestone-provider";
+import { bindMilestoneProvider } from "../../../datasources/skill-provider";
 
 import MilestonesComponent from "../components/MilestonesPageComponent";
 

@@ -3,18 +3,18 @@ import { fromJS } from "immutable";
 import { ON_SUCCESS_FETCH_MILESTONES } from "./constants";
 
 export const initialState = fromJS({
-  milestones: null
+  skills: null
 });
 
-function milestoneProviderReducer(state = initialState, payload) {
+function skillProviderReducer(state = initialState, payload) {
   switch (payload.type) {
     case ON_SUCCESS_FETCH_MILESTONES:
-      debugger;
-      return state.set("milestones", payload.data);
+      console.log(payload.data)
+      return state.set("skills", payload.data);
 
     default:
       return state;
   }
 }
 
-export default milestoneProviderReducer;
+export default skillProviderReducer;
