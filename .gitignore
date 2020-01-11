@@ -14,6 +14,7 @@
 
 # misc
 .DS_Store
+# .env /* This line should be uncommented so as not to publish the .env file */
 .env.local
 .env.development.local
 .env.test.local
