@@ -1,3 +1,3 @@
-import MilestonesPage from "./container/Loadable";
+import MilestonesPage from './container/Loadable';
 
 export default MilestonesPage;

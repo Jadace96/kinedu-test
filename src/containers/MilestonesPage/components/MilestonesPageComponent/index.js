@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
+import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 
 function AreasPage({ skills, fetchSkillByIdAction }) {
   useEffect(() => {
@@ -17,5 +18,10 @@ function AreasPage({ skills, fetchSkillByIdAction }) {
     </div>
   );
 }
+
+AreasPage.propTypes = {
+  skills: PropTypes.shape({}),
+  fetchSkillByIdAction: PropTypes.func,
+};
 
 export default AreasPage;

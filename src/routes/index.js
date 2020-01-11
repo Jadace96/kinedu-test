@@ -1,7 +1,7 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import MilestonesPage from "containers/MilestonesPage";
+import MilestonesPage from '../containers/MilestonesPage';
 
 function Routes() {
   return (
