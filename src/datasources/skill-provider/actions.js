@@ -1,6 +1,6 @@
-import { ON_SUCCESS_FETCH_MILESTONES } from "./constants";
+import { ON_SUCCESS_FETCH_SKILL } from "./constants";
 
 export const onSuccessFetchSkill = data => ({
-  type: ON_SUCCESS_FETCH_MILESTONES,
+  type: ON_SUCCESS_FETCH_SKILL,
   data
 });

@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 
-import { ON_SUCCESS_FETCH_MILESTONES } from "./constants";
+import { ON_SUCCESS_FETCH_SKILL } from "./constants";
 
 export const initialState = fromJS({
   skills: null
@@ -8,8 +8,8 @@ export const initialState = fromJS({
 
 function skillProviderReducer(state = initialState, payload) {
   switch (payload.type) {
-    case ON_SUCCESS_FETCH_MILESTONES:
-      console.log(payload.data)
+    case ON_SUCCESS_FETCH_SKILL:
+      console.log(payload.data);
       return state.set("skills", payload.data);
 
     default:

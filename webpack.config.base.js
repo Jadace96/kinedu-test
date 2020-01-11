@@ -5,14 +5,13 @@ module.exports = {
   // ENTRY POINT
   entry: path.resolve(__dirname, "src/index.js"),
 
-  // OUTPUT DIRECTORY
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "main.bundle-[hash].js"
-  },
-
-  // EVIROMENT MODE
-  mode: process.env.NODE_ENV || "development",
+  // PLUGINS
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: path.resolve(__dirname, "public/index.html"),
+      filename: "index.html"
+    })
+  ],
 
   // PATH RESOLVE
   resolve: {
@@ -26,29 +25,16 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: ["babel-loader", "eslint-loader"]
       },
       {
         test: /\.css$/,
         use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+      },
+      {
+        test: /\.(png|jpg|svg)$/,
+        use: ["url-loader"]
       }
     ]
-  },
-
-  // PLUGINS
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, "public/index.html"),
-      filename: "index.html"
-    })
-  ],
-
-  // DEV SERVER ENTRY POINT
-  devServer: {
-    port: 3000,
-    open: true,
-    contentBase: path.resolve(__dirname, "src")
   }
 };

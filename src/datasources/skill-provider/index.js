@@ -1,9 +1,9 @@
 import skillProviderReducer from "./reducer";
-import { bindMilestoneProvider } from "./connect";
-import { makeSelectPropFromMilestoneProvider } from "./selectors";
+import { bindSkillProvider } from "./connect";
+import { makeSelectPropFromSkillProvider } from "./selectors";
 
 export {
-  bindMilestoneProvider,
+  bindSkillProvider,
   skillProviderReducer,
-  makeSelectPropFromMilestoneProvider
+  makeSelectPropFromSkillProvider
 };

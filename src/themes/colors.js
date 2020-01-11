@@ -1,3 +1,3 @@
 const AppColors = {};
 
-export { AppColors as colors };
+export default AppColors;
