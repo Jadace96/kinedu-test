@@ -1,19 +1,17 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // ENTRY POINT
   entry: path.resolve(__dirname, 'src/index.js'),
 
-  // OUTPUT DIRECTORY
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle-[hash].js',
-  },
-
-  // EVIROMENT MODE
-  mode: process.env.NODE_ENV || 'development',
+  // PLUGINS
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: path.resolve(__dirname, 'public/index.html'),
+      filename: 'index.html',
+    }),
+  ],
 
   // PATH RESOLVE
   resolve: {
@@ -38,22 +36,5 @@ module.exports = {
         use: ['url-loader'],
       },
     ],
-  },
-
-  // PLUGINS
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, 'public/index.html'),
-      filename: 'index.html',
-    }),
-  ],
-
-  // DEV SERVER ENTRY POINT
-  devServer: {
-    hot: true,
-    open: true,
-    port: 3000,
-    contentBase: path.resolve(__dirname, 'dist'),
   },
 };

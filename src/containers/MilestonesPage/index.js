@@ -7,7 +7,7 @@ function MilestonesPage() {
       <Helmet>
         <title>Kinedu - Milestones</title>
       </Helmet>
-      <h1>Milestones page</h1>
+      <h1>Milestonessss page</h1>
     </div>
   );
 }
