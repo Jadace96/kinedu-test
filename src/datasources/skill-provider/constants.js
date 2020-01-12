@@ -1,2 +1,0 @@
-export const FETCH_SKILL = 'FETCH_SKILL';
-export const ON_SUCCESS_FETCH_SKILL = 'ON_SUCCESS_FETCH_SKILL';

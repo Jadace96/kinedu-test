@@ -1,6 +1,6 @@
 
 /**
- * Asynchronously loads the component for Milestones
+ * Asynchronously loads the component for Developmental areas
  */
 import Loadable from 'react-loadable';
 

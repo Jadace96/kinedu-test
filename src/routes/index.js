@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import MilestonesPage from '../containers/MilestonesPage';
+import DevelopmentalAreasPage from '../containers/DevelopmentalAreasPage';
 
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={MilestonesPage} />
+      <Route exact path="/" component={DevelopmentalAreasPage} />
     </Switch>
   );
 }
