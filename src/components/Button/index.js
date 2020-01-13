@@ -5,10 +5,11 @@ const Button = styled.button.attrs(() => ({
 }))`
   width: 50%;
   display: flex;
+  border: none;
   outline: none;
   cursor: pointer;
   padding: 0.8rem 0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bold;
   align-items: center;
   border-radius: 2rem;

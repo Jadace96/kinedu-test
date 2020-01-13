@@ -10,7 +10,6 @@ const activeButtonStyles = css`
 const DevelopmentalAreaButton = styled(Button).attrs(() => ({
   className: 'DevelopmentalAreaButton',
 }))`
-  border: none;
   font-size: 0.7rem;
   border-radius: initial;
   background-color: transparent;

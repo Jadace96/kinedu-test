@@ -4,12 +4,15 @@ import Helmet from 'react-helmet';
 
 import ButtonListContainer from '../styles/DevelopmentalAreaButtonListContainer';
 import DevelopmentalAreaButton from '../styles/DevelopmentalAreaButton';
+import MilestoneItemContainer from '../styles/MilestoneItemContainer';
+import MilestoneInfoContainer from '../styles/MilestoneInfoContainer';
+import SkillContainer from '../styles/SkillContainer';
 import AreaContainer from '../styles/AreaContainer';
 
 import Container from '../../../../components/Container';
-import FontBold from '../../../../components/FontBold';
 import FontLight from '../../../../components/FontLight';
-import SkillContainer from '../styles/SkillContainer';
+import FontBold from '../../../../components/FontBold';
+import Button from '../../../../components/Button';
 
 /* Areas to show */
 const AREAS = {
@@ -66,19 +69,22 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction }) {
         </ButtonListContainer>
         {currentSkill && (
           <SkillContainer>
-            <FontBold id="skillTitle">
+            <FontBold>
               Skill: {currentSkill.title}
             </FontBold>
-            <FontLight id="skillDescription">{currentSkill.description}</FontLight>
+            <FontLight>{currentSkill.description}</FontLight>
           </SkillContainer>
         )}
       </AreaContainer>
       {areThereMilestonesToShow
         && currentSkill.milestones.map(({ title }) => (
-          <Container>
-            <div>{title}</div>
-            <small>Usually achieved by: 2-4 months</small>
-          </Container>
+          <MilestoneItemContainer>
+            <MilestoneInfoContainer>
+              <FontLight>{title}</FontLight>
+              <FontLight>Usually achieved by: 2-4 months</FontLight>
+            </MilestoneInfoContainer>
+            <Button>Not answered</Button>
+          </MilestoneItemContainer>
         ))}
     </Container>
   );
