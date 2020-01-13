@@ -1,5 +1,6 @@
 const AppColors = {
   prymaryTextColor: '#FFFFFF',
+  secondaryTextColor: '#a9aaab',
   physicalPrimaryColor: '#1FADDF',
   completedButtonBackground: '#75B753',
   activeButtonAreaBackground: '#FFFFFF',

@@ -8,12 +8,7 @@ const AreaContainer = styled(Container).attrs(() => ({
   text-align: center;
   transition: 300ms linear;
   color: ${({ theme }) => theme.colors.prymaryTextColor};
-  background-color: ${({ theme, activeArea }) => theme.colors[`${activeArea}PrimaryColor`]};  
-
-  #areasTitle {
-    font-size: 1.1rem;
-    margin: 1.5rem 0 0.5rem;
-  }
+  background-color: ${({ theme, activeArea }) => theme.colors[`${activeArea}PrimaryColor`]};
 `;
 
 export default AreaContainer;

@@ -5,7 +5,11 @@ import Helmet from 'react-helmet';
 import ButtonListContainer from '../styles/DevelopmentalAreaButtonListContainer';
 import DevelopmentalAreaButton from '../styles/DevelopmentalAreaButton';
 import AreaContainer from '../styles/AreaContainer';
+
 import Container from '../../../../components/Container';
+import FontBold from '../../../../components/FontBold';
+import FontLight from '../../../../components/FontLight';
+import SkillContainer from '../styles/SkillContainer';
 
 /* Areas to show */
 const AREAS = {
@@ -26,6 +30,7 @@ const AREAS = {
 function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction }) {
   const [activeArea, setActiveArea] = useState('physical');
   const currentSkill = fechedSkills && fechedSkills[AREAS[activeArea].skillId];
+  const areThereMilestonesToShow = currentSkill && currentSkill.milestones.length > 0;
 
   useEffect(() => {
     if (!fechedSkills) {
@@ -44,7 +49,7 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction }) {
     <Container>
       <Helmet title="Kinedu - Developmental areas" />
       <AreaContainer activeArea={activeArea}>
-        <h3>Areas</h3>
+        <FontBold id="areasTitle">Areas</FontBold>
         <ButtonListContainer>
           {Object.values(AREAS).map(({
             id, name, slug, skillId,
@@ -59,15 +64,22 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction }) {
             </DevelopmentalAreaButton>
           ))}
         </ButtonListContainer>
-        <h2>{currentSkill.title}</h2>
-        <p>{currentSkill.description}</p>
+        {currentSkill && (
+          <SkillContainer>
+            <FontBold id="skillTitle">
+              Skill: {currentSkill.title}
+            </FontBold>
+            <FontLight id="skillDescription">{currentSkill.description}</FontLight>
+          </SkillContainer>
+        )}
       </AreaContainer>
-      {currentSkill.milestones.map(({ title }) => (
-        <>
-          <h5>{title}</h5>
-          <h6>Usually achieved by: 2-4 months</h6>
-        </>
-      ))}
+      {areThereMilestonesToShow
+        && currentSkill.milestones.map(({ title }) => (
+          <Container>
+            <div>{title}</div>
+            <small>Usually achieved by: 2-4 months</small>
+          </Container>
+        ))}
     </Container>
   );
 }
