@@ -5,6 +5,8 @@ const AreaContainer = styled(Container).attrs(() => ({
   className: 'AreaContainer',
 }))`
   width: 100%;
+  text-align: center;
+  transition: 300ms linear;
   color: ${({ theme }) => theme.colors.prymaryTextColor};
   background-color: ${({ theme, activeArea }) => theme.colors[`${activeArea}PrimaryColor`]};
 `;

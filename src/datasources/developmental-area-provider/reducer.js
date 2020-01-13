@@ -4,13 +4,13 @@ import {
   ON_SUCCESS_FETCH_SKILL_BY_ID,
 } from './constants';
 
-const areaListStored = localStorage.fechedSkills;
+const areaListStored = localStorage.areaList;
 const initialAreaList = areaListStored ? JSON.parse(areaListStored) : null;
 
 const fechedSkillsStored = localStorage.fechedSkills;
 const initialFechedSkills = fechedSkillsStored ? JSON.parse(fechedSkillsStored) : null;
 
-const fechedAreasSkillsStored = localStorage.fechedSkills;
+const fechedAreasSkillsStored = localStorage.fechedAreasSkills;
 const initialFechedAreasSkills = fechedAreasSkillsStored ? JSON.parse(fechedAreasSkillsStored) : null;
 
 const initialState = {

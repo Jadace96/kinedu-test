@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Button from '../../../../components/Button';
 
 const activeButtonStyles = css`
-  transition: 500ms linear;
+  transition: 300ms linear;
   color: ${({ theme, area }) => theme.colors[`${area}PrimaryColor`]};
   background-color: ${({ theme }) => theme.colors.activeButtonAreaBackground};
 `;
@@ -13,9 +13,9 @@ const DevelopmentalAreaButton = styled(Button).attrs(() => ({
   border: none;
   font-size: 0.7rem;
   border-radius: initial;
+  background-color: transparent;
   color: ${({ theme }) => theme.colors.prymaryTextColor};
   ${({ isActive }) => isActive && activeButtonStyles}
-  /* border: 1px solid ${({ theme }) => theme.colors.darkGray}; */
 `;
 
 export default DevelopmentalAreaButton;

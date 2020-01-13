@@ -1,5 +1,5 @@
 import { bindDevelopmentalAreaProvider } from '../../../datasources/developmental-area-provider';
 
-import DevelopmentalAreas from '../components/DevelopmentalAreasComponent';
+import DevelopmentalArea from '../components/DevelopmentalAreaComponent';
 
-export default bindDevelopmentalAreaProvider(DevelopmentalAreas);
+export default bindDevelopmentalAreaProvider(DevelopmentalArea);
