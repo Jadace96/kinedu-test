@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Container from '../../../../components/Container';
+import Container from 'components/Container';
 
 const SkillContainer = styled(Container).attrs(() => ({
   className: 'SkillContainer',

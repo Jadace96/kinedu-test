@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
+import {
+  AREAS, COMPLETED, UNCOMPLETED, NOT_ANSWERED,
+} from 'settings/developmentalAreas';
+
 import ButtonListContainer from '../styles/DevelopmentalAreaButtonListContainer';
-import DevelopmentalAreaButton from '../styles/DevelopmentalAreaButton';
+import Button from '../styles/DevelopmentalAreaButton';
 import MilestoneItemContainer from '../styles/MilestoneItemContainer';
 import MilestoneInfoContainer from '../styles/MilestoneInfoContainer';
 import SkillContainer from '../styles/SkillContainer';
@@ -12,26 +16,11 @@ import AreaContainer from '../styles/AreaContainer';
 import Container from '../../../../components/Container';
 import FontLight from '../../../../components/FontLight';
 import FontBold from '../../../../components/FontBold';
-import Button from '../../../../components/Button';
 
-/* Areas to show */
-const AREAS = {
-  physical: {
-    id: 1,
-    skillId: 23,
-    name: 'Physical',
-    slug: 'physical',
-  },
-  socialEmotional: {
-    id: 4,
-    skillId: 2,
-    slug: 'socialEmotional',
-    name: 'Social & Emotional',
-  },
-};
 
 function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction }) {
   const [activeArea, setActiveArea] = useState('physical');
+  const [milestoneStatus, setMilestoneStatus] = useState(NOT_ANSWERED);
   const currentSkill = fechedSkills && fechedSkills[AREAS[activeArea].skillId];
   const areThereMilestonesToShow = currentSkill && currentSkill.milestones.length > 0;
 
@@ -48,6 +37,15 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction }) {
     }
   }
 
+  function onClickMilestoneButton() {
+    if (milestoneStatus === NOT_ANSWERED || milestoneStatus === UNCOMPLETED) {
+      setMilestoneStatus(COMPLETED);
+    } else {
+      setMilestoneStatus(UNCOMPLETED);
+    }
+    // currentSkill.milestones.answer = status;
+  }
+
   return (
     <Container>
       <Helmet title="Kinedu - Developmental areas" />
@@ -57,33 +55,38 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction }) {
           {Object.values(AREAS).map(({
             id, name, slug, skillId,
           }) => (
-            <DevelopmentalAreaButton
+            <Button
               key={id}
               area={slug}
+              buttonsLength={Object.keys(AREAS).length}
               isActive={activeArea === slug}
               onClick={() => onClickArea(slug, skillId)}
             >
               {name}
-            </DevelopmentalAreaButton>
+            </Button>
           ))}
         </ButtonListContainer>
         {currentSkill && (
           <SkillContainer>
-            <FontBold>
-              Skill: {currentSkill.title}
-            </FontBold>
+            <FontBold>Skill: {currentSkill.title}</FontBold>
             <FontLight>{currentSkill.description}</FontLight>
           </SkillContainer>
         )}
       </AreaContainer>
       {areThereMilestonesToShow
-        && currentSkill.milestones.map(({ title }) => (
+        && currentSkill.milestones.map((milestone) => (
           <MilestoneItemContainer>
             <MilestoneInfoContainer>
-              <FontLight>{title}</FontLight>
+              <FontLight>{milestone.title}</FontLight>
               <FontLight>Usually achieved by: 2-4 months</FontLight>
             </MilestoneInfoContainer>
-            <Button>Not answered</Button>
+            <Button
+              defaultButton
+              onClick={() => onClickMilestoneButton()}
+              milestoneStatus={milestoneStatus}
+            >
+              {milestone.answer || milestoneStatus}
+            </Button>
           </MilestoneItemContainer>
         ))}
     </Container>

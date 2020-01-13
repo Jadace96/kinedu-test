@@ -1,19 +1,48 @@
 import styled, { css } from 'styled-components';
-import Button from '../../../../components/Button';
+import {
+  COMPLETED, UNCOMPLETED,
+} from 'settings/developmentalAreas';
+
+import Button from 'components/Button';
 
 const activeButtonStyles = css`
-  transition: 300ms linear;
   color: ${({ theme, area }) => theme.colors[`${area}PrimaryColor`]};
   background-color: ${({ theme }) => theme.colors.activeButtonAreaBackground};
 `;
 
-const DevelopmentalAreaButton = styled(Button).attrs(() => ({
-  className: 'DevelopmentalAreaButton',
-}))`
+const buttonAreaStyles = css`
   font-size: 0.7rem;
   border-radius: initial;
   background-color: transparent;
   color: ${({ theme }) => theme.colors.prymaryTextColor};
+  width: calc(100% / ${({ buttonsLength }) => buttonsLength});
+`;
+
+const defaultButtonStyles = css`  
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  padding: 0.7rem 1.5rem;
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
+  background-color: ${({ theme }) => theme.colors.notAnsweredButtonBackground};
+`;
+
+const milestoneButtonStyles = {
+  [COMPLETED]: css`
+    color: ${({ theme }) => theme.colors.prymaryTextColor};
+    background-color: ${({ theme }) => theme.colors.completedButtonBackground};
+  `,
+  [UNCOMPLETED]: css`
+    color: ${({ theme }) => theme.colors.completedButtonBackground};
+    background-color: ${({ theme }) => theme.colors.uncompletedButtonBackground};
+  `,
+};
+
+const DevelopmentalAreaButton = styled(Button).attrs(() => ({
+  className: 'DevelopmentalAreaButton',
+}))`
+  transition: 300ms linear;
+  ${({ defaultButton }) => (defaultButton ? defaultButtonStyles : buttonAreaStyles)}
+  ${({ milestoneStatus }) => (milestoneStatus && milestoneButtonStyles[milestoneStatus])}
   ${({ isActive }) => isActive && activeButtonStyles}
 `;
 
