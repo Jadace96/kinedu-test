@@ -4,21 +4,21 @@ import Helmet from 'react-helmet';
 
 import { AREAS, COMPLETED } from 'settings/developmentalAreas';
 
-import FontLight from 'components/FontLight';
 import FontBold from 'components/FontBold';
+import FontLight from 'components/FontLight';
 
 import Button from '../styles/DevelopmentalAreaButton';
 import ButtonListContainer from '../styles/DevelopmentalAreaButtonListContainer';
 
-import SkillContainer from '../styles/SkillContainer';
 import AreaContainer from '../styles/AreaContainer';
 import MilestoneListItem from '../MilestoneListItem';
+import SkillContainer from '../styles/SkillContainer';
 import DevelopmentalAreaContainer from '../styles/DevelopmentalAreaContainer';
 import NextAreaButtonContainer from '../styles/NextAreaButtonContainer';
 
 let milestonesAnswer = {};
 function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesAnswerAction }) {
-  const [activeArea, setActiveArea] = useState(AREAS[0]);
+  const [activeArea, setActiveArea] = useState({ ...AREAS[0], index: 0 });
   const currentSkill = fechedSkills && fechedSkills[activeArea.skillId];
   const isLastAreaActive = activeArea.index === AREAS.length - 1;
   const areThereMilestonesToShow = currentSkill && Object.keys(currentSkill.milestones).length > 0;
@@ -65,9 +65,8 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
     onClickArea(nextActiveArea, currentActiveAreaIndex + 1);
   }
 
-  return (
-    <DevelopmentalAreaContainer>
-      <Helmet title="Kinedu - Developmental areas" />
+  function renderAreaSection() {
+    return (
       <AreaContainer activeArea={activeArea.slug}>
         <FontBold id="areasTitle">Areas</FontBold>
         <ButtonListContainer>
@@ -84,20 +83,27 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
           ))}
         </ButtonListContainer>
         {currentSkill && (
-          <SkillContainer>
-            <FontBold>Skill: {currentSkill.title}</FontBold>
-            <FontLight>{currentSkill.description}</FontLight>
-          </SkillContainer>
+        <SkillContainer>
+          <FontBold>Skill: {currentSkill.title}</FontBold>
+          <FontLight>{currentSkill.description}</FontLight>
+        </SkillContainer>
         )}
       </AreaContainer>
-      {areThereMilestonesToShow
-        && Object.values(currentSkill.milestones).map((milestone) => (
-          <MilestoneListItem
-            key={milestone.id}
-            milestone={milestone}
-            onClickMilestoneButton={onClickMilestoneButton}
-          />
-        ))}
+    );
+  }
+
+  function renderMilestoneListSection() {
+    return Object.values(currentSkill.milestones).map((milestone) => (
+      <MilestoneListItem
+        key={milestone.id}
+        milestone={milestone}
+        onClickMilestoneButton={onClickMilestoneButton}
+      />
+    ));
+  }
+
+  function renderNextButton() {
+    return (
       <NextAreaButtonContainer>
         <Button
           defaultButton
@@ -107,6 +113,15 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
           {isLastAreaActive ? 'Finish assessment' : 'Next'}
         </Button>
       </NextAreaButtonContainer>
+    );
+  }
+
+  return (
+    <DevelopmentalAreaContainer>
+      <Helmet title="Kinedu - Developmental areas" />
+      {renderAreaSection()}
+      {areThereMilestonesToShow && renderMilestoneListSection()}
+      {renderNextButton()}
     </DevelopmentalAreaContainer>
   );
 }
