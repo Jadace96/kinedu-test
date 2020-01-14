@@ -24,7 +24,7 @@ const devConfig = {
     open: true,
     port: 3000,
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, 'src/index.js'),
+    contentBase: path.resolve(__dirname, 'dist'),
   },
 };
 
