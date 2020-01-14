@@ -16,6 +16,13 @@ import SkillContainer from '../styles/SkillContainer';
 import DevelopmentalAreaContainer from '../styles/DevelopmentalAreaContainer';
 import NextAreaButtonContainer from '../styles/NextAreaButtonContainer';
 
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
+
 let milestonesAnswer = {};
 function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesAnswerAction }) {
   const [activeArea, setActiveArea] = useState({ ...AREAS[0], index: 0 });
@@ -70,6 +77,7 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
       return;
     }
     onChangeArea(nextActiveArea, currentActiveAreaIndex + 1);
+    scrollToTop();
   }
 
   function renderAreaSection() {
