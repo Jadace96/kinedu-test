@@ -26,7 +26,7 @@ export const onSuccessFetchAreas = (areas) => ({
   areas,
 });
 
-export const onSaveMilestonesAnswer = (data) => ({
+export const onSaveMilestonesAnswer = (answers) => ({
   type: ON_SAVE_MILESTONES_ANSWER,
-  data,
+  answers,
 });

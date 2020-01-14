@@ -1,5 +1,3 @@
-import { toast } from 'react-toastify';
-
 import {
   ON_ERROR,
   ON_SUCCESS_FETCH_AREAS,
@@ -12,10 +10,14 @@ const areaListStored = localStorage.areaList;
 const initialAreaList = areaListStored ? JSON.parse(areaListStored) : null;
 
 const fechedSkillsStored = localStorage.fechedSkills;
-const initialFechedSkills = fechedSkillsStored ? JSON.parse(fechedSkillsStored) : null;
+const initialFechedSkills = fechedSkillsStored
+  ? JSON.parse(fechedSkillsStored)
+  : null;
 
 const fechedAreasWithSkillsStored = localStorage.fechedAreasWithSkills;
-const initialFechedAreasWithSkills = fechedAreasWithSkillsStored ? JSON.parse(fechedAreasWithSkillsStored) : null;
+const initialFechedAreasWithSkills = fechedAreasWithSkillsStored
+  ? JSON.parse(fechedAreasWithSkillsStored)
+  : null;
 
 const initialState = {
   error: {},
@@ -46,7 +48,9 @@ function developmentalAreaProviderReducer(state = initialState, payload) {
           skills,
         };
       }
-      localStorage.fechedAreasWithSkills = JSON.stringify(fechedAreasWithSkills);
+      localStorage.fechedAreasWithSkills = JSON.stringify(
+        fechedAreasWithSkills,
+      );
       return { ...state, fechedAreasWithSkills };
     }
 
@@ -69,19 +73,18 @@ function developmentalAreaProviderReducer(state = initialState, payload) {
 
     case ON_SAVE_MILESTONES_ANSWER: {
       const fechedSkills = { ...state.fechedSkills };
-      const { answers, persistDate } = payload.data;
+      const { answers } = payload;
       Object.values(answers).forEach((answer) => {
         fechedSkills[answer.skill_id].milestones[answer.id].answer = answer.answer;
       });
-      if (persistDate) {
-        localStorage.fechedSkills = JSON.stringify(fechedSkills);
-        toast.success('¡All your answers have been saved!');
-      }
+      localStorage.fechedSkills = JSON.stringify(fechedSkills);
+
       return { ...state, fechedSkills };
     }
 
     case ON_ERROR: {
-      return { ...state, error: payload.error }; }
+      return { ...state, error: payload.error };
+    }
 
     default:
       return state;

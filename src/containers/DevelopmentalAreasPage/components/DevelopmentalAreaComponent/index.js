@@ -16,7 +16,7 @@ import SkillContainer from '../styles/SkillContainer';
 import DevelopmentalAreaContainer from '../styles/DevelopmentalAreaContainer';
 import NextAreaButtonContainer from '../styles/NextAreaButtonContainer';
 
-const milestonesAnswer = {};
+let milestonesAnswer = {};
 function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesAnswerAction }) {
   const [activeArea, setActiveArea] = useState({ ...AREAS[0], index: 0 });
   const currentSkill = fechedSkills && fechedSkills[activeArea.skillId];
@@ -24,15 +24,16 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
   const areThereMilestonesToShow = currentSkill && Object.keys(currentSkill.milestones).length > 0;
 
   useEffect(() => {
-    if (!fechedSkills) {
-      fetchSkillByIdAction();
+    if (!fechedSkills || !fechedSkills[activeArea.skillId]) {
+      fetchSkillByIdAction(activeArea.skillId);
     }
   }, []);
 
-  function onSaveMilestonesAswer(persistDate = false) {
+  function onSaveMilestonesAswer() {
     if (Object.keys(milestonesAnswer).length > 0) {
-      saveMilestonesAnswerAction(milestonesAnswer, persistDate);
+      saveMilestonesAnswerAction(milestonesAnswer);
     }
+    milestonesAnswer = {};
   }
 
   function onChangeArea(pressedArea, index) {
@@ -46,7 +47,6 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
 
   function onClickAreaButton(pressedArea, index) {
     onChangeArea(pressedArea, index);
-    onSaveMilestonesAswer();
   }
 
   function onClickMilestoneButton(milestone, milestoneStatus) {
@@ -60,14 +60,13 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
     milestonesAnswer[milestone.id].answer = milestoneStatus;
   }
 
+  /* Button at the bottom of the view */
   function onClickNextAreaButton() {
     const currentActiveAreaIndex = activeArea.index || 0;
     const nextActiveArea = AREAS[currentActiveAreaIndex + 1];
-    const persistDate = true;
-    onSaveMilestonesAswer(persistDate);
 
+    onSaveMilestonesAswer();
     if (isLastAreaActive) {
-      onChangeArea(AREAS[0], 0);
       return;
     }
     onChangeArea(nextActiveArea, currentActiveAreaIndex + 1);

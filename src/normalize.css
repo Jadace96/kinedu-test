@@ -363,8 +363,6 @@ template {
   display: none;
 }
 
-@media (min-width: 813px) {
-  #portal {
-    display: none;
-  }
+.Toastify__toast--success {
+	background: #75B753 !important;	
 }

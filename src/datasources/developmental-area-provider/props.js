@@ -57,12 +57,9 @@ const mapDispatchToProps = (dispatch) => ({
     fetchData(URL, dispatch, onSuccessFetchSkillById);
   },
 
-  saveMilestonesAnswerAction(answers, persistDate = false) {
-    const data = {
-      answers,
-      persistDate,
-    };
-    dispatch(onSaveMilestonesAnswer(data));
+  saveMilestonesAnswerAction(answers) {
+    dispatch(onSaveMilestonesAnswer(answers));
+    toast.success('¡All your answers have been saved!');
   },
 });
 
