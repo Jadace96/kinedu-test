@@ -40,7 +40,7 @@ function MilestoneListItem({ milestone, onClickMilestoneButton }) {
         onClick={onClickButton}
         milestoneStatus={milestoneStatus}
       >
-        {milestone.answer || milestoneStatus}
+        {milestoneStatus}
       </Button>
     </MilestoneItemContainer>
   );

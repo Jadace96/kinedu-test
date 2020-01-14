@@ -16,7 +16,7 @@ import SkillContainer from '../styles/SkillContainer';
 import DevelopmentalAreaContainer from '../styles/DevelopmentalAreaContainer';
 import NextAreaButtonContainer from '../styles/NextAreaButtonContainer';
 
-let milestonesAnswer = {};
+const milestonesAnswer = {};
 function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesAnswerAction }) {
   const [activeArea, setActiveArea] = useState({ ...AREAS[0], index: 0 });
   const currentSkill = fechedSkills && fechedSkills[activeArea.skillId];
@@ -29,21 +29,23 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
     }
   }, []);
 
-  function onSaveMilestonesAswer() {
+  function onSaveMilestonesAswer(persistDate = false) {
     if (Object.keys(milestonesAnswer).length > 0) {
-      saveMilestonesAnswerAction(milestonesAnswer);
+      saveMilestonesAnswerAction(milestonesAnswer, persistDate);
     }
-    milestonesAnswer = {};
   }
 
-  function onClickArea(pressedArea, index) {
+  function onChangeArea(pressedArea, index) {
     const areaDataToSet = { ...pressedArea, index };
     setActiveArea(areaDataToSet);
 
     if (!fechedSkills[pressedArea.skillId]) {
       fetchSkillByIdAction(pressedArea.skillId);
     }
+  }
 
+  function onClickAreaButton(pressedArea, index) {
+    onChangeArea(pressedArea, index);
     onSaveMilestonesAswer();
   }
 
@@ -61,14 +63,14 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
   function onClickNextAreaButton() {
     const currentActiveAreaIndex = activeArea.index || 0;
     const nextActiveArea = AREAS[currentActiveAreaIndex + 1];
-
-    onSaveMilestonesAswer();
+    const persistDate = true;
+    onSaveMilestonesAswer(persistDate);
 
     if (isLastAreaActive) {
-      onClickArea(AREAS[0], 0);
+      onChangeArea(AREAS[0], 0);
       return;
     }
-    onClickArea(nextActiveArea, currentActiveAreaIndex + 1);
+    onChangeArea(nextActiveArea, currentActiveAreaIndex + 1);
   }
 
   function renderAreaSection() {
@@ -81,7 +83,7 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
               key={area.id}
               area={area.slug}
               buttonsLength={AREAS.length}
-              onClick={() => onClickArea(area, index)}
+              onClick={() => onClickAreaButton(area, index)}
               isActive={activeArea.slug === area.slug}
             >
               {area.name}

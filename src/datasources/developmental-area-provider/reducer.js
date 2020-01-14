@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import {
   ON_ERROR,
   ON_SUCCESS_FETCH_AREAS,
@@ -67,10 +69,14 @@ function developmentalAreaProviderReducer(state = initialState, payload) {
 
     case ON_SAVE_MILESTONES_ANSWER: {
       const fechedSkills = { ...state.fechedSkills };
-      Object.values(payload.answers).forEach((answer) => {
+      const { answers, persistDate } = payload.data;
+      Object.values(answers).forEach((answer) => {
         fechedSkills[answer.skill_id].milestones[answer.id].answer = answer.answer;
       });
-      localStorage.fechedSkills = JSON.stringify(fechedSkills);
+      if (persistDate) {
+        localStorage.fechedSkills = JSON.stringify(fechedSkills);
+        toast.success('¡All your answers have been saved!');
+      }
       return { ...state, fechedSkills };
     }
 
