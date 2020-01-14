@@ -1,4 +1,7 @@
+import { toast } from 'react-toastify';
+
 import {
+  onErrorAction,
   onSuccessFetchAreas,
   onSaveMilestonesAnswer,
   onSuccessFetchAreaById,
@@ -25,7 +28,11 @@ function fetchData(
 ) {
   fetch(url, fetchParams)
     .then((response) => response.json())
-    .then(({ data }) => dispatch(onSuccessFetchAction(data)));
+    .then(({ data }) => dispatch(onSuccessFetchAction(data)))
+    .catch((error) => {
+      dispatch(onErrorAction(error));
+      toast.error(error.message);
+    });
 }
 
 const mapStateToProps = ({ developmentalAreaProviderReducer }) => ({
@@ -37,21 +44,31 @@ const mapDispatchToProps = (dispatch) => ({
 
   fetchAreasAction() {
     const URL = `${BASE_URL}/areas`;
-    fetchData(URL, dispatch, onSuccessFetchAreas);
+    const onSuccessFetch = () => {
+      dispatch(onSuccessFetchAreas);
+    };
+    fetchData(URL, onSuccessFetch);
   },
 
   fetchAreaByIdAction(areaId = 1) {
     const URL = `${BASE_URL}/areas/${areaId}`;
-    fetchData(URL, dispatch, onSuccessFetchAreaById);
+    const onSuccessFetch = () => {
+      dispatch(onSuccessFetchAreaById);
+    };
+    fetchData(URL, onSuccessFetch);
   },
 
   fetchSkillByIdAction(skillId = 23) {
     const URL = `${BASE_URL}/skills/${skillId}/milestones`;
-    fetchData(URL, dispatch, onSuccessFetchSkillById);
+    const onSuccessFetch = () => {
+      dispatch(onSuccessFetchSkillById);
+    };
+    fetchData(URL, onSuccessFetch);
   },
 
   saveMilestonesAnswerAction(answers) {
     dispatch(onSaveMilestonesAnswer(answers));
+    toast.success('¡All your answers have been saved!');
   },
 });
 

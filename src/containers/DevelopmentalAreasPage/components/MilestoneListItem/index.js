@@ -33,7 +33,7 @@ function MilestoneListItem({ milestone, onClickMilestoneButton }) {
     <MilestoneItemContainer>
       <MilestoneInfoContainer>
         <FontLight>{milestone.title}</FontLight>
-        <FontLight>Usually achieved by: 2-4 months</FontLight>
+        <FontLight>Usually achieved by: {milestone.age} months</FontLight>
       </MilestoneInfoContainer>
       <Button
         defaultButton

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { toast } from 'react-toastify';
 
 import { AREAS, COMPLETED } from 'settings/developmentalAreas';
 
@@ -65,8 +66,8 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
     onSaveMilestonesAswer();
 
     if (isLastAreaActive) {
-      alert('Your progress has been saved');
       onClickArea(AREAS[0], 0);
+      toast.success('¡All your answers have been saved!');
       return;
     }
     onClickArea(nextActiveArea, currentActiveAreaIndex + 1);

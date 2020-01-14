@@ -1,4 +1,5 @@
 import {
+  ON_ERROR,
   ON_SUCCESS_FETCH_AREAS,
   ON_SAVE_MILESTONES_ANSWER,
   ON_SUCCESS_FETCH_AREA_BY_ID,
@@ -15,6 +16,7 @@ const fechedAreasWithSkillsStored = localStorage.fechedAreasWithSkills;
 const initialFechedAreasWithSkills = fechedAreasWithSkillsStored ? JSON.parse(fechedAreasWithSkillsStored) : null;
 
 const initialState = {
+  error: {},
   areaList: initialAreaList,
   fechedSkills: initialFechedSkills,
   fechedAreasWithSkills: initialFechedAreasWithSkills,
@@ -71,6 +73,9 @@ function developmentalAreaProviderReducer(state = initialState, payload) {
       localStorage.fechedSkills = JSON.stringify(fechedSkills);
       return { ...state, fechedSkills };
     }
+
+    case ON_ERROR: {
+      return { ...state, error: payload.error }; }
 
     default:
       return state;
