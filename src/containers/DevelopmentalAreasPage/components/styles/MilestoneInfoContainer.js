@@ -19,6 +19,11 @@ const MilestoneInfoContainer = styled.div.attrs(() => ({
       font-size: 0.75rem;
     }
   }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    padding: 0;
+    width: 65%;
+  }
 `;
 
 export default MilestoneInfoContainer;

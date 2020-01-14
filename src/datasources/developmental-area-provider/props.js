@@ -1,7 +1,8 @@
 import {
-  onSuccessFetchSkillById,
   onSuccessFetchAreas,
+  onSaveMilestonesAnswer,
   onSuccessFetchAreaById,
+  onSuccessFetchSkillById,
 } from './actions';
 
 // eslint-disable-next-line no-undef
@@ -47,6 +48,10 @@ const mapDispatchToProps = (dispatch) => ({
   fetchSkillByIdAction(skillId = 23) {
     const URL = `${BASE_URL}/skills/${skillId}/milestones`;
     fetchData(URL, dispatch, onSuccessFetchSkillById);
+  },
+
+  saveMilestonesAnswerAction(answers) {
+    dispatch(onSaveMilestonesAnswer(answers));
   },
 });
 

@@ -16,6 +16,12 @@ const SkillContainer = styled(Container).attrs(() => ({
     line-height: 1rem;
     font-size: 0.8rem;
   }
+
+  @media ${({ theme }) => theme.device.tablet} {
+   .FontBold {
+    width: 70%;
+   }
+  }
 `;
 
 export default SkillContainer;

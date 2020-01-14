@@ -9,9 +9,35 @@
  */
 
 html {
+  font-size: 95%;
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
+
+/* Responsive font sizes */
+
+/* Tablet */
+@media (min-width: 768px) {
+  html {
+    font-size: 115%;
+  }
+}
+
+/* Laptop */
+@media (min-width: 1024px) {
+  html {
+    font-size: 125%;
+  }
+}
+
+/* LaptopL */
+@media (min-width: 1440px) {
+  html {
+    font-size: 135%;
+  }
+}
+/* Responsive font sizes */
+
 
 /* Sections
      ========================================================================== */
@@ -22,6 +48,7 @@ html {
 
 body {
   margin: 0;
+  background-color: #F8F8F8;
   font-family: "Lato", sans-serif;
 }
 

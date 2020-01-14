@@ -13,18 +13,18 @@ import Button from '../styles/DevelopmentalAreaButton';
 import MilestoneItemContainer from '../styles/MilestoneItemContainer';
 import MilestoneInfoContainer from '../styles/MilestoneInfoContainer';
 
-function MilestoneListItem({ milestone, onMilestoneButtonPressed }) {
-  const [milestoneStatus, setMilestoneStatus] = useState(NOT_ANSWERED);
+function MilestoneListItem({ milestone, onClickMilestoneButton }) {
+  const [milestoneStatus, setMilestoneStatus] = useState(milestone.answer || NOT_ANSWERED);
 
-  function onClickMilestoneButton() {
+  function onClickButton() {
     let newMilestoneStatus;
     if (milestoneStatus === NOT_ANSWERED || milestoneStatus === UNCOMPLETED) {
       newMilestoneStatus = COMPLETED;
     } else {
       newMilestoneStatus = UNCOMPLETED;
     }
-    if (onMilestoneButtonPressed) {
-      onMilestoneButtonPressed(milestone, newMilestoneStatus);
+    if (onClickMilestoneButton) {
+      onClickMilestoneButton(milestone, newMilestoneStatus);
     }
     setMilestoneStatus(newMilestoneStatus);
   }
@@ -37,7 +37,7 @@ function MilestoneListItem({ milestone, onMilestoneButtonPressed }) {
       </MilestoneInfoContainer>
       <Button
         defaultButton
-        onClick={onClickMilestoneButton}
+        onClick={onClickButton}
         milestoneStatus={milestoneStatus}
       >
         {milestone.answer || milestoneStatus}
@@ -48,7 +48,7 @@ function MilestoneListItem({ milestone, onMilestoneButtonPressed }) {
 
 MilestoneListItem.propTypes = {
   milestone: PropTypes.object,
-  onMilestoneButtonPressed: PropTypes.func,
+  onClickMilestoneButton: PropTypes.func,
 };
 
 export default MilestoneListItem;

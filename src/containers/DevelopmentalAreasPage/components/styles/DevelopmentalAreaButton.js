@@ -11,11 +11,11 @@ const activeButtonStyles = css`
 `;
 
 const buttonAreaStyles = css`
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   border-radius: initial;
   background-color: transparent;
   color: ${({ theme }) => theme.colors.prymaryTextColor};
-  width: calc(100% / ${({ buttonsLength }) => buttonsLength});
+  min-width: calc(100% / ${({ buttonsLength }) => buttonsLength});
 `;
 
 const defaultButtonStyles = css`  

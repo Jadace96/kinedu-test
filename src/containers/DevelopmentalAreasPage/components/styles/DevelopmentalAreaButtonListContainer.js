@@ -5,6 +5,7 @@ const ButtonListContainer = styled.div.attrs(() => ({
 }))`
   width: 80%;
   display: flex;
+  max-width: 25rem;
   overflow: hidden;
   border: 1px solid;  
   border-radius: 2rem;
