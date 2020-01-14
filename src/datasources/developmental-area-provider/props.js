@@ -44,26 +44,17 @@ const mapDispatchToProps = (dispatch) => ({
 
   fetchAreasAction() {
     const URL = `${BASE_URL}/areas`;
-    const onSuccessFetch = () => {
-      dispatch(onSuccessFetchAreas);
-    };
-    fetchData(URL, onSuccessFetch);
+    fetchData(URL, dispatch, onSuccessFetchAreas);
   },
 
   fetchAreaByIdAction(areaId = 1) {
     const URL = `${BASE_URL}/areas/${areaId}`;
-    const onSuccessFetch = () => {
-      dispatch(onSuccessFetchAreaById);
-    };
-    fetchData(URL, onSuccessFetch);
+    fetchData(URL, dispatch, onSuccessFetchAreaById);
   },
 
   fetchSkillByIdAction(skillId = 23) {
     const URL = `${BASE_URL}/skills/${skillId}/milestones`;
-    const onSuccessFetch = () => {
-      dispatch(onSuccessFetchSkillById);
-    };
-    fetchData(URL, onSuccessFetch);
+    fetchData(URL, dispatch, onSuccessFetchSkillById);
   },
 
   saveMilestonesAnswerAction(answers) {
