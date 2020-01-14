@@ -29,6 +29,13 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
     }
   }, []);
 
+  function onSaveMilestonesAswer() {
+    if (Object.keys(milestonesAnswer).length > 0) {
+      saveMilestonesAnswerAction(milestonesAnswer);
+    }
+    milestonesAnswer = {};
+  }
+
   function onClickArea(pressedArea, index) {
     const areaDataToSet = { ...pressedArea, index };
     setActiveArea(areaDataToSet);
@@ -36,6 +43,8 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
     if (!fechedSkills[pressedArea.skillId]) {
       fetchSkillByIdAction(pressedArea.skillId);
     }
+
+    onSaveMilestonesAswer();
   }
 
   function onClickMilestoneButton(milestone, milestoneStatus) {
@@ -53,10 +62,8 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
     const currentActiveAreaIndex = activeArea.index || 0;
     const nextActiveArea = AREAS[currentActiveAreaIndex + 1];
 
-    if (Object.keys(milestonesAnswer).length > 0) {
-      saveMilestonesAnswerAction(milestonesAnswer);
-    }
-    milestonesAnswer = {};
+    onSaveMilestonesAswer();
+
     if (isLastAreaActive) {
       alert('Your progress has been saved');
       onClickArea(AREAS[0], 0);
