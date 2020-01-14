@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Helmet } from "react-helmet";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 
 function HelmetComponent({ title }) {
   return (
@@ -11,7 +11,7 @@ function HelmetComponent({ title }) {
 }
 
 HelmetComponent.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 export default HelmetComponent;
