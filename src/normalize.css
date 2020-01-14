@@ -29,13 +29,6 @@ html {
     font-size: 125%;
   }
 }
-
-/* LaptopL */
-@media (min-width: 1440px) {
-  html {
-    font-size: 135%;
-  }
-}
 /* Responsive font sizes */
 
 
