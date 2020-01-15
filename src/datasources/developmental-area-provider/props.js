@@ -65,8 +65,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   saveMilestonesAnswerAction(answers) {
-    dispatch(onSaveMilestonesAnswer(answers));
-    toast.success('¡All your answers have been saved!');
+    if (Object.keys(answers).length > 0) {
+      dispatch(onSaveMilestonesAnswer(answers));
+      toast.success('¡All your answers have been saved!');
+    } else {
+      toast.info('¡Nothing to keep yet!');
+    }
   },
 });
 

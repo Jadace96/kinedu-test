@@ -366,3 +366,7 @@ template {
 .Toastify__toast--success {
 	background: #75B753 !important;	
 }
+
+.Toastify__toast--info {
+	background: #1FADDF !important;	
+}

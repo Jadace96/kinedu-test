@@ -17,7 +17,7 @@ function scrollToTop() {
   });
 }
 
-const milestonesAnswer = {};
+let milestonesAnswer = {};
 function DevelopmentalArea({
   fechedSkills,
   fetchSkillByIdAction,
@@ -34,16 +34,9 @@ function DevelopmentalArea({
     }
   }, []);
 
-  function onSaveMilestonesAswer() {
-    if (Object.keys(milestonesAnswer).length > 0) {
-      saveMilestonesAnswerAction(milestonesAnswer);
-    }
-  }
-
   function onChangeArea(pressedArea, index) {
     const areaDataToSet = { ...pressedArea, index };
     setActiveArea(areaDataToSet);
-
     if (!fechedSkills[pressedArea.skillId]) {
       fetchSkillByIdAction(pressedArea.skillId);
     }
@@ -64,13 +57,13 @@ function DevelopmentalArea({
   function onClickNextAreaButton() {
     const currentActiveAreaIndex = activeArea.index || 0;
     const nextActiveArea = AREAS[currentActiveAreaIndex + 1];
-
-    onSaveMilestonesAswer();
+    saveMilestonesAnswerAction(milestonesAnswer);
+    milestonesAnswer = {};
+    scrollToTop();
     if (isLastAreaActive) {
       return;
     }
     onChangeArea(nextActiveArea, currentActiveAreaIndex + 1);
-    scrollToTop();
   }
 
   function renderMilestoneListSection() {
