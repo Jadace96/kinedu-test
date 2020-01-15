@@ -1,8 +1,8 @@
 {
   "name": "kinedu-test",
   "version": "0.0.1",
-  "description": "kinedu test with react from zero",
-  "author": "Jorge Daniel (1996jadc@gmail.com)",
+  "description": "kinedu test with react from scratch",
+  "author": "Jorge Daniel (1996jadc@gmail.com | jadace96@gmail.com)",
   "license": "ISC",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.dev.js",
@@ -10,10 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.7",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
-    "immutable": "^4.0.0-rc.12",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
