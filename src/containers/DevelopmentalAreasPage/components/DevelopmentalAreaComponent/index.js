@@ -4,17 +4,11 @@ import Helmet from 'react-helmet';
 
 import { AREAS, COMPLETED } from 'settings/developmentalAreas';
 
-import FontBold from 'components/FontBold';
-import FontLight from 'components/FontLight';
-
 import Button from '../styles/DevelopmentalAreaButton';
-import ButtonListContainer from '../styles/DevelopmentalAreaButtonListContainer';
-
-import AreaContainer from '../styles/AreaContainer';
 import MilestoneListItem from '../MilestoneListItem';
-import SkillContainer from '../styles/SkillContainer';
-import DevelopmentalAreaContainer from '../styles/DevelopmentalAreaContainer';
 import NextAreaButtonContainer from '../styles/NextAreaButtonContainer';
+import DevelopmentalAreaContainer from '../styles/DevelopmentalAreaContainer';
+import AreaSectionComponent from '../AreaSectionComponent';
 
 function scrollToTop() {
   window.scrollTo({
@@ -23,7 +17,7 @@ function scrollToTop() {
   });
 }
 
-let milestonesAnswer = {};
+const milestonesAnswer = {};
 function DevelopmentalArea({
   fechedSkills,
   fetchSkillByIdAction,
@@ -44,7 +38,6 @@ function DevelopmentalArea({
     if (Object.keys(milestonesAnswer).length > 0) {
       saveMilestonesAnswerAction(milestonesAnswer);
     }
-    milestonesAnswer = {};
   }
 
   function onChangeArea(pressedArea, index) {
@@ -54,10 +47,6 @@ function DevelopmentalArea({
     if (!fechedSkills[pressedArea.skillId]) {
       fetchSkillByIdAction(pressedArea.skillId);
     }
-  }
-
-  function onClickAreaButton(pressedArea, index) {
-    onChangeArea(pressedArea, index);
   }
 
   function onClickMilestoneButton(milestone, milestoneStatus) {
@@ -82,33 +71,6 @@ function DevelopmentalArea({
     }
     onChangeArea(nextActiveArea, currentActiveAreaIndex + 1);
     scrollToTop();
-  }
-
-  function renderAreaSection() {
-    return (
-      <AreaContainer activeArea={activeArea.slug}>
-        <FontBold id="areasTitle">Areas</FontBold>
-        <ButtonListContainer>
-          {AREAS.map((area, index) => (
-            <Button
-              key={area.id}
-              area={area.slug}
-              buttonsLength={AREAS.length}
-              onClick={() => onClickAreaButton(area, index)}
-              isActive={activeArea.slug === area.slug}
-            >
-              {area.name}
-            </Button>
-          ))}
-        </ButtonListContainer>
-        {currentSkill && (
-          <SkillContainer>
-            <FontBold>Skill: {currentSkill.title}</FontBold>
-            <FontLight>{currentSkill.description}</FontLight>
-          </SkillContainer>
-        )}
-      </AreaContainer>
-    );
   }
 
   function renderMilestoneListSection() {
@@ -138,7 +100,11 @@ function DevelopmentalArea({
   return (
     <DevelopmentalAreaContainer>
       <Helmet title="Kinedu - Developmental Areas" />
-      {renderAreaSection()}
+      <AreaSectionComponent
+        activeArea={activeArea}
+        currentSkill={currentSkill}
+        onClickAreaButton={onChangeArea}
+      />
       {areThereMilestonesToShow && renderMilestoneListSection()}
       {renderNextButton()}
     </DevelopmentalAreaContainer>
