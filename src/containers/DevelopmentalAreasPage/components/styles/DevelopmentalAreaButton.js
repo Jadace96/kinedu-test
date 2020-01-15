@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  COMPLETED, UNCOMPLETED,
-} from 'settings/developmentalAreas';
+import { COMPLETED, UNCOMPLETED } from 'settings/developmentalAreas';
 
 import Button from 'components/Button';
 

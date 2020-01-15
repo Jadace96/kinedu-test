@@ -37,6 +37,7 @@ function DevelopmentalArea({
   function onChangeArea(pressedArea, index) {
     const areaDataToSet = { ...pressedArea, index };
     setActiveArea(areaDataToSet);
+    milestonesAnswer = {};
     if (!fechedSkills[pressedArea.skillId]) {
       fetchSkillByIdAction(pressedArea.skillId);
     }

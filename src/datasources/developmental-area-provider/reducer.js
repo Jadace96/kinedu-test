@@ -41,7 +41,6 @@ function developmentalAreaProviderReducer(state = initialState, payload) {
       const fechedAreasWithSkills = { ...state.fechedAreasWithSkills };
       const { area, skills } = payload.area;
       const currentAreaId = `${area.name}_${area.id}`;
-
       if (!fechedAreasWithSkills[currentAreaId]) {
         fechedAreasWithSkills[currentAreaId] = {
           ...area,
@@ -57,16 +56,13 @@ function developmentalAreaProviderReducer(state = initialState, payload) {
     case ON_SUCCESS_FETCH_SKILL_BY_ID: {
       const { skill } = payload.skill;
       const milestones = {};
-
       skill.milestones.forEach((milestone) => {
         milestones[milestone.id] = milestone;
       });
-
       const fechedSkills = {
         ...state.fechedSkills,
         [skill.id]: { ...skill, milestones },
       };
-
       localStorage.fechedSkills = JSON.stringify(fechedSkills);
       return { ...state, fechedSkills };
     }
@@ -78,7 +74,6 @@ function developmentalAreaProviderReducer(state = initialState, payload) {
         fechedSkills[answer.skill_id].milestones[answer.id].answer = answer.answer;
       });
       localStorage.fechedSkills = JSON.stringify(fechedSkills);
-
       return { ...state, fechedSkills };
     }
 

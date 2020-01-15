@@ -11,10 +11,10 @@ import { onShowLoader } from '../../containers/Loader/container/actions';
 
 // eslint-disable-next-line no-undef
 const { BASE_URL } = kinedu.config.API_CLIENTS;
-const { SKILLS_URL_TOKEN } = process.env;
+const { API_URL_TOKEN } = process.env;
 
 const headers = new Headers({
-  Authorization: SKILLS_URL_TOKEN,
+  Authorization: API_URL_TOKEN,
 });
 const defaultFetchParams = {
   headers,
