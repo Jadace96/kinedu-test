@@ -15,7 +15,7 @@ const MilestoneItemContainer = styled(Container).attrs(() => ({
     text-align: left;
     flex-direction: row;
     padding: 1.5rem 2rem;
-    width: -webkit-fill-available;
+    width: calc(100% - 4rem);  
     justify-content: space-between;
 
     .DevelopmentalAreaButton {
