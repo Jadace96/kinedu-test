@@ -1,4 +1,5 @@
 const AppColors = {
+  loaderBackground: '#1FADDF',
   prymaryTextColor: '#FFFFFF',
   secondaryTextColor: '#a9aaab',
   physicalPrimaryColor: '#1FADDF',

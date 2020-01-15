@@ -6,6 +6,7 @@ const AreaContainer = styled(Container).attrs(() => ({
 }))`
   width: 100%;
   text-align: center;
+  padding-bottom: 1rem;
   letter-spacing: 0.3px;
   transition: 300ms linear;
   color: ${({ theme }) => theme.colors.prymaryTextColor};

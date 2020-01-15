@@ -7,6 +7,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import theme from './themes';
 import Routes from './routes';
 import { store, history } from './helpers';
+import Loader, { bindLoaderContainer } from './containers/Loader';
 
 const AppWrapper = styled.div.attrs(() => ({
   id: 'AppWrapper',
@@ -16,15 +17,25 @@ const AppWrapper = styled.div.attrs(() => ({
   flex-direction: column;
 `;
 
+function AppWrapperComponent(props) {
+  return (
+    <AppWrapper>
+      <Routes configProps={props} />
+    </AppWrapper>
+  );
+}
+
+/* This is the place to bind all global data */
+const AppConected = bindLoaderContainer(AppWrapperComponent);
+
 function App() {
   return (
     <>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Router history={history}>
-            <AppWrapper>
-              <Routes />
-            </AppWrapper>
+            <Loader />
+            <AppConected />
           </Router>
         </ThemeProvider>
       </Provider>
@@ -32,5 +43,4 @@ function App() {
     </>
   );
 }
-
 export default App;

@@ -7,6 +7,7 @@ import {
   onSuccessFetchAreaById,
   onSuccessFetchSkillById,
 } from './actions';
+import { onShowLoader } from '../../containers/Loader/container/actions';
 
 // eslint-disable-next-line no-undef
 const { BASE_URL } = kinedu.config.API_CLIENTS;
@@ -28,7 +29,11 @@ function fetchData(
 ) {
   fetch(url, fetchParams)
     .then((response) => response.json())
-    .then(({ data }) => dispatch(onSuccessFetchAction(data)))
+    .then(({ data }) => {
+      const showLoader = false;
+      dispatch(onShowLoader(showLoader));
+      dispatch(onSuccessFetchAction(data));
+    })
     .catch((error) => {
       dispatch(onErrorAction(error));
       toast.error(error.message);
@@ -54,6 +59,8 @@ const mapDispatchToProps = (dispatch) => ({
 
   fetchSkillByIdAction(skillId = 23) {
     const URL = `${BASE_URL}/skills/${skillId}/milestones`;
+    const showLoader = true;
+    dispatch(onShowLoader(showLoader));
     fetchData(URL, dispatch, onSuccessFetchSkillById);
   },
 

@@ -24,7 +24,11 @@ function scrollToTop() {
 }
 
 let milestonesAnswer = {};
-function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesAnswerAction }) {
+function DevelopmentalArea({
+  fechedSkills,
+  fetchSkillByIdAction,
+  saveMilestonesAnswerAction,
+}) {
   const [activeArea, setActiveArea] = useState({ ...AREAS[0], index: 0 });
   const currentSkill = fechedSkills && fechedSkills[activeArea.skillId];
   const isLastAreaActive = activeArea.index === AREAS.length - 1;
@@ -98,10 +102,10 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
           ))}
         </ButtonListContainer>
         {currentSkill && (
-        <SkillContainer>
-          <FontBold>Skill: {currentSkill.title}</FontBold>
-          <FontLight>{currentSkill.description}</FontLight>
-        </SkillContainer>
+          <SkillContainer>
+            <FontBold>Skill: {currentSkill.title}</FontBold>
+            <FontLight>{currentSkill.description}</FontLight>
+          </SkillContainer>
         )}
       </AreaContainer>
     );
@@ -133,7 +137,7 @@ function DevelopmentalArea({ fechedSkills, fetchSkillByIdAction, saveMilestonesA
 
   return (
     <DevelopmentalAreaContainer>
-      <Helmet title="Kinedu - Developmental areas" />
+      <Helmet title="Kinedu - Developmental Areas" />
       {renderAreaSection()}
       {areThereMilestonesToShow && renderMilestoneListSection()}
       {renderNextButton()}
